@@ -4,6 +4,6 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../autoload.php';
 
-$users = \App\Models\User::findAll();
+$user = \App\Models\User::findByID(1);
 
-var_dump($users);
+var_dump($user);
