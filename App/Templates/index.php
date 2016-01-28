@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>PHP2 Application</title>
+        <title>PHP2 Application | Index</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
     <body>
@@ -12,7 +12,7 @@
                 <?php foreach($lastNews as $n): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><?= $n->title ?></h3>
+                            <h3 class="panel-title"><a href="article.php?id=<?= $n->id ?>"><?= $n->title ?></a></h3>
                         </div>
                         <div class="panel-body">
                             <?= $n->text ?>
