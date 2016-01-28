@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../autoload.php';
 
-$user = \App\Models\User::findByID(1);
+$lastNews = \App\Models\News::findLastRows(3);
 
-var_dump($user);
+ob_start();
+
+include __DIR__ . '/../App/Templates/index.php';
+
+echo ob_get_clean();

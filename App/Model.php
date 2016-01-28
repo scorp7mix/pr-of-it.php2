@@ -29,5 +29,15 @@ abstract class Model
         return $result[0] ?: false;
     }
 
-    abstract public function getName();
+    protected static function findLastRowsByField($field, $limit)
+    {
+        $db = new Db();
+
+        $result = $db->query(
+            'SELECT * FROM ' . static::TABLE . ' ORDER BY ' . $field . ' DESC LIMIT ' . $limit,
+            static::class
+        );
+
+        return $result ?: false;
+    }
 }
