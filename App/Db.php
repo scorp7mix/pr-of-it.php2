@@ -2,11 +2,16 @@
 
 namespace App;
 
+use App\Core\Singleton;
+
 class Db
 {
-    protected $dbh;
+    use Singleton;
 
-    public function __construct()
+    protected $dbh;
+    protected $dbError;
+
+    private function __construct()
     {
         $config = Config::instance()->db;
         $dsn = $config['driver'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'] .
@@ -16,7 +21,12 @@ class Db
 
     public function execute($sql, $data = [])
     {
-        return $this->dbh->prepare($sql)->execute($data);
+        $sth = $this->dbh->prepare($sql);
+        $result = $sth->execute($data);
+
+        $this->dbError = $sth->errorInfo()[2];
+
+        return $result;
     }
 
     public function query($sql, $class, $data = [])
@@ -28,5 +38,15 @@ class Db
         }
 
         return [];
+    }
+
+    public function getLastInsertId()
+    {
+        return $this->dbh->lastInsertId();
+    }
+
+    public function getError()
+    {
+        return $this->dbError;
     }
 }

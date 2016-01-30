@@ -2,6 +2,10 @@
 
 error_reporting(E_ALL);
 
+set_exception_handler(function (\Exception $e) {
+    echo 'Ошибка: ' . $e->getMessage() . "\n";
+});
+
 require __DIR__ . '/../autoload.php';
 
 $lastNews = \App\Models\News::findLastRows(3);

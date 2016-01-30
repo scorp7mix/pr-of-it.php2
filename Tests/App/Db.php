@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../tests.php';
 
-$db = new \App\Db();
+$db = \App\Db::instance();
 
 /**
  * Check execute method if it returns false (row with id does not need to exist in database)
