@@ -8,7 +8,10 @@ class Db
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=pr-of-it.php2;charset=utf8', 'root', '');
+        $config = Config::instance()->db;
+        $dsn = $config['driver'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'] .
+            ';charset=' . ($config['charset'] ?? 'utf8');
+        $this->dbh = new \PDO($dsn, $config['user'], $config['password']);
     }
 
     public function execute($sql, $data = [])
