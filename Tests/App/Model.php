@@ -25,6 +25,7 @@ $user->email = 'vasya@example.com';
 /**
  * Check model update method
  */
+/*
 $user = \App\Models\User::findByID(2);
 $user->name = 'Petya';
 
@@ -32,3 +33,22 @@ echo check(
     $user->update(),
     'Model->update method'
 );
+*/
+
+/**
+ * Check model save method
+ */
+$user = new \App\Models\User(2);
+$user->name = 'Vasya';
+$user->email = 'test@example.com';
+
+echo check(
+    $user->save(),
+    'Model->save method on new model'
+);
+$user->email = 'vasya@example.com';
+echo check(
+    $user->save(),
+    'Model->save method on existing model'
+);
+

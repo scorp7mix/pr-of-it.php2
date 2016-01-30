@@ -13,7 +13,7 @@ abstract class Model
         return empty($this->id);
     }
 
-    public function insert()
+    protected function insert()
     {
         if (!$this->isNew()) {
             return;
@@ -41,7 +41,7 @@ abstract class Model
         throw new \Exception('Ошибка добавления записи в базу (' . $db->getError() . ')');
     }
 
-    public function update()
+    protected function update()
     {
         if ($this->isNew()) {
             return;
@@ -66,6 +66,11 @@ abstract class Model
         }
 
         throw new \Exception('Ошибка обновления записи в базе (' . $db->getError() . ')');
+    }
+
+    public function save()
+    {
+       return $this->isNew() ? $this->insert() : $this->update();
     }
 
     public static function findAll()
