@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-set_exception_handler(function (Exception $e) {
+set_exception_handler(function ($e) {
     echo 'Ошибка: ' . $e->getMessage() . "\n";
 });
 
@@ -38,7 +38,8 @@ echo check(
 /**
  * Check model save method
  */
-$user = new \App\Models\User(2);
+/*
+$user = new \App\Models\User();
 $user->name = 'Vasya';
 $user->email = 'test@example.com';
 
@@ -51,4 +52,14 @@ echo check(
     $user->save(),
     'Model->save method on existing model'
 );
+*/
 
+/**
+ * Check model delete method
+ */
+$user = \App\Models\User::findByID(3);
+
+echo check(
+    $user->delete(),
+    'Model->delete method'
+);

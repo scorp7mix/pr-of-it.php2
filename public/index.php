@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-set_exception_handler(function (\Exception $e) {
+set_exception_handler(function ($e) {
     echo 'Ошибка: ' . $e->getMessage() . "\n";
 });
 

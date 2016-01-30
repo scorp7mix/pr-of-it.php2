@@ -15,10 +15,6 @@ abstract class Model
 
     protected function insert()
     {
-        if (!$this->isNew()) {
-            return;
-        }
-
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
@@ -43,10 +39,6 @@ abstract class Model
 
     protected function update()
     {
-        if ($this->isNew()) {
-            return;
-        }
-
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
@@ -71,6 +63,23 @@ abstract class Model
     public function save()
     {
        return $this->isNew() ? $this->insert() : $this->update();
+    }
+
+    public function delete()
+    {
+        if ($this->isNew()) {
+            return;
+        }
+
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = ' . (int)$this->id;
+        $db = Db::instance();
+        $result = $db->execute($sql);
+        if ($result) {
+            $this->id = null;
+            return $this;
+        }
+
+        throw new \Exception('Ошибка удаления записи из базы (' . $db->getError() . ')');
     }
 
     public static function findAll()
