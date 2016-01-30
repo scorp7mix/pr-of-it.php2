@@ -40,7 +40,7 @@ class Db
         return [];
     }
 
-    public function getLastInsertId()
+    public function getNewId()
     {
         return $this->dbh->lastInsertId();
     }

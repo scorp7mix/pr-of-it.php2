@@ -34,11 +34,38 @@ abstract class Model
         $db = Db::instance();
         $result = $db->execute($sql, $values);
         if ($result) {
-            $this->id = $db->getLastInsertId();
+            $this->id = $db->getNewId();
             return $this;
         }
 
         throw new \Exception('Ошибка добавления записи в базу (' . $db->getError() . ')');
+    }
+
+    public function update()
+    {
+        if ($this->isNew()) {
+            return;
+        }
+
+        $columns = [];
+        $values = [];
+        foreach ($this as $k => $v) {
+            if ('id' == $k) {
+                continue;
+            }
+            $columns[] = $k . '=:' . $k;
+            $values[':' . $k] = $v;
+        }
+
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' . implode(',', $columns) . '
+            WHERE id = ' . (int)$this->id;
+        $db = Db::instance();
+        $result = $db->execute($sql, $values);
+        if ($result) {
+            return $this;
+        }
+
+        throw new \Exception('Ошибка обновления записи в базе (' . $db->getError() . ')');
     }
 
     public static function findAll()
