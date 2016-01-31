@@ -12,7 +12,7 @@
                 <?php foreach($lastNews as $n): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><a href="article.php?id=<?= $n->id ?>"><?= $n->title ?></a></h3>
+                            <h3 class="panel-title"><a href="/article.php?id=<?= $n->id ?>"><?= $n->title ?></a></h3>
                         </div>
                         <div class="panel-body">
                             <?= $n->text ?>
@@ -24,6 +24,7 @@
             <?php endif ?>
         </div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -116,4 +116,14 @@ abstract class Model
 
         return $result ?: false;
     }
+
+    public function fillByPost()
+    {
+        foreach ($this as $k => $v) {
+            if ('id' == $k) {
+                continue;
+            }
+            $this->$k = $_POST[$k] ?? $this->$k;
+        }
+    }
 }
