@@ -4,7 +4,6 @@ namespace App\Core;
 
 /**
  * Implements some PHP magic methods
- * *self::$data must be declared in target class
  *
  * Trait Std
  * @package App\Core
