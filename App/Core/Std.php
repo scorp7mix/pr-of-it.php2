@@ -11,13 +11,15 @@ namespace App\Core;
  */
 trait Std
 {
+    private $data;
+
     public function __get($name)
     {
-        return self::$data[$name] ?: null;
+        return $this->data[$name] ?: null;
     }
 
     public function __set($name, $value)
     {
-        self::$data[$name] = $value;
+        $this->data[$name] = $value;
     }
 }
