@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
 require __DIR__ . '/tests.php';
 
 $config = \App\Config::instance();
