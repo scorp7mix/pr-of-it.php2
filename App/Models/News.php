@@ -10,6 +10,7 @@ class News extends Model
 
     public $title;
     public $text;
+    public $author_id;
     public $date;
 
     public static function findLastRows($limit)
