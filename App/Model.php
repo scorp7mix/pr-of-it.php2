@@ -18,7 +18,7 @@ abstract class Model
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
-            if ('id' == $k) {
+            if ('id' == $k || '' === $v) {
                 continue;
             }
             $columns[] = $k;
@@ -42,7 +42,7 @@ abstract class Model
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
-            if ('id' == $k) {
+            if ('id' == $k || '' === $v) {
                 continue;
             }
             $columns[] = $k . '=:' . $k;

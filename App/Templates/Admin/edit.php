@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="date" class="col-xs-3 control-label">Дата</label>
                             <div class="col-xs-9">
-                                <input type="text" class="form-control" id="date" name="date" value="<?= $article->date ?>" placeholder="0000-00-00 00:00:00" required>
+                                <input type="text" class="form-control" id="date" name="date" value="<?= $article->date ?>" placeholder="0000-00-00 00:00:00">
                             </div>
                         </div>
                         <div class="form-group">
