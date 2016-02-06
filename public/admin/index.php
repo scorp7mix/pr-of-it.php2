@@ -2,10 +2,6 @@
 
 require __DIR__ . '/../../autoload.php';
 
-$lastNews = \App\Models\News::findAll();
-
-ob_start();
-
-include __DIR__ . '/../../App/Templates/Admin/index.php';
-
-echo ob_get_clean();
+$view = new \App\View();
+$view->lastNews = \App\Models\News::findAll();
+$view->display(__DIR__ . '/../../App/Templates/Admin/index.php');

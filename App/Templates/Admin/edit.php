@@ -24,6 +24,17 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="author_id" class="col-xs-3 control-label">Автор</label>
+                            <div class="col-xs-9">
+                                <select class="form-control" name="author_id">
+                                    <option></option>
+                                    <?php foreach ($authors as $author): ?>
+                                        <option value="<?= $author->id ?>" <?= $author->id === $article->author_id ? 'selected' : '' ?>><?= $author->name ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="date" class="col-xs-3 control-label">Дата</label>
                             <div class="col-xs-9">
                                 <input type="text" class="form-control" id="date" name="date" value="<?= $article->date ?>" placeholder="0000-00-00 00:00:00">

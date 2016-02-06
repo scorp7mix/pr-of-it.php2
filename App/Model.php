@@ -42,11 +42,11 @@ abstract class Model
         $columns = [];
         $values = [];
         foreach ($this as $k => $v) {
-            if ('id' == $k || '' === $v) {
+            if ('id' == $k) {
                 continue;
             }
             $columns[] = $k . '=:' . $k;
-            $values[':' . $k] = $v;
+            $values[':' . $k] = ('' === $v) ? null : $v;
         }
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . implode(',', $columns) . '

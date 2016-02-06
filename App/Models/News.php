@@ -17,4 +17,16 @@ class News extends Model
     {
         return self::findLastRowsByField('date', $limit);
     }
+
+    /**
+     * @param $name
+     * @return Author
+     */
+    public function __get($name)
+    {
+        if ('author' === $name && null !== $this->author_id) {
+            return Author::findByID($this->author_id);
+        }
+        return false;
+    }
 }

@@ -15,7 +15,7 @@
             <br>
             <div class="row">
                 <?php if (false !== $lastNews): ?>
-                    <?php foreach($lastNews as $n): ?>
+                    <?php foreach ($lastNews as $n): ?>
                         <div class="col-xs-4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">

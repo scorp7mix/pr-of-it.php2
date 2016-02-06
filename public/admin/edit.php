@@ -13,11 +13,11 @@ if (!empty($_POST)) {
     $article->fillByPost();
     if ($article->save()) {
         header('Location: /admin/index.php');
+        exit(0);
     }
 };
 
-ob_start();
-
-include __DIR__ . '/../../App/Templates/Admin/edit.php';
-
-echo ob_get_clean();
+$view = new \App\View();
+$view->article = $article;
+$view->authors = \App\Models\Author::findAll();
+$view->display(__DIR__ . '/../../App/Templates/Admin/edit.php');

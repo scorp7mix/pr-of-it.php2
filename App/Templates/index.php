@@ -12,10 +12,16 @@
                 <?php foreach($lastNews as $n): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><a href="/article.php?id=<?= $n->id ?>"><?= $n->title ?></a></h3>
+                            <h3 class="panel-title"><b><a href="/article.php?id=<?= $n->id ?>"><?= $n->title ?></a></b></h3>
                         </div>
                         <div class="panel-body">
                             <?= $n->text ?>
+                        </div>
+                        <div class="panel-footer">
+                            <i>
+                                <?= $n->author->name ?? 'Неизвестный автор' ?>
+                                <small>(<?= $n->date ?>)</small>
+                            </i>
                         </div>
                     </div>
                 <?php endforeach ?>
