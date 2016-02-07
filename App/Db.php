@@ -13,10 +13,10 @@ class Db
 
     private function __construct()
     {
-        $config = Config::instance()->db;
-        $dsn = $config['driver'] . ':host=' . $config['host'] . ';dbname=' . $config['dbname'] .
-            ';charset=' . ($config['charset'] ?? 'utf8');
-        $this->dbh = new \PDO($dsn, $config['user'], $config['password']);
+        $dbc = Config::instance()['db'];
+        $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=' . $dbc->dbname .
+            ';charset=' . ($dbc->charset ?? 'utf8');
+        $this->dbh = new \PDO($dsn, $dbc->user, $dbc->password);
     }
 
     public function execute($sql, $data = [])

@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 
 set_exception_handler(function ($e) {
     echo 'Ошибка: ' . $e->getMessage() . "\n";

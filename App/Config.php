@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Core\ArrayAccess;
 use App\Core\Singleton;
 use App\Core\Std;
 
-class Config
+class Config implements \ArrayAccess
 {
     use Singleton;
     use Std;
+    use ArrayAccess;
 
     private function __construct()
     {

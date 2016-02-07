@@ -14,7 +14,10 @@ trait Std
 
     public function __get($name)
     {
-        return $this->data[$name] ?: null;
+        if (is_array($this->data[$name])) {
+            return new Arrayable($this->data[$name]);
+        }
+        return $this->data[$name];
     }
 
     public function __set($name, $value)
