@@ -4,6 +4,12 @@ namespace App\Models;
 
 use App\Model;
 
+/**
+ * Class News
+ * @package App\Models
+ *
+ * @property Author $author
+ */
 class News extends Model
 {
     const TABLE = 'news';
@@ -26,6 +32,14 @@ class News extends Model
     {
         if ('author' === $name && null !== $this->author_id) {
             return Author::findByID($this->author_id);
+        }
+        return false;
+    }
+
+    public function __isset($name)
+    {
+        if ('author' === $name && null !== $this->author_id) {
+            return false !== $this->author;
         }
         return false;
     }

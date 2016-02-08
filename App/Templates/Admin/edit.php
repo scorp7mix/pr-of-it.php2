@@ -29,7 +29,7 @@
                                 <select class="form-control" name="author_id">
                                     <option></option>
                                     <?php foreach ($authors as $author): ?>
-                                        <option value="<?= $author->id ?>" <?= $author->id === $article->author_id ? 'selected' : '' ?>><?= $author->name ?></option>
+                                        <option value="<?= $author->id ?>" <?= $author->id === $article->author->id ? 'selected' : '' ?>><?= $author->name ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
