@@ -2,25 +2,30 @@
 
 namespace App;
 
-use App\Core\Std;
-
 class View
 {
-    use Std;
+    protected $templatePath;
 
-    public function render($template)
+    public function __construct($templatePath)
     {
-        foreach ($this->data as $key => $value) {
-            $$key = $value;
+        $this->templatePath = $templatePath;
+    }
+
+    public function render($template, $output = [])
+    {
+        if (!empty($output)) {
+            foreach ($output as $key => $value) {
+                $$key = $value;
+            }
         }
 
         ob_start();
-        include $template;
+        include $this->templatePath . $template;
         return ob_get_clean();
     }
 
-    public function display($template)
+    public function display($template, $output = [])
     {
-        echo $this->render($template);
+        echo $this->render($template, $output);
     }
 }

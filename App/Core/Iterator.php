@@ -4,7 +4,7 @@ namespace App\Core;
 
 trait Iterator
 {
-    protected $data;
+    protected $data = [];
 
     /**
      * @var int Iterator pointer

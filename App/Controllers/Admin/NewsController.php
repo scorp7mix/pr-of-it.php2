@@ -9,8 +9,7 @@ class NewsController extends Controller
 {
     protected function actionIndex()
     {
-        $this->view->lastNews = News::findAll();
-        $this->view->display(__DIR__ . '/../../Templates/Admin/index.php');
+        $this->view->display('index.php', ['lastNews' => News::findAll()]);
     }
 
     protected function actionEdit()
@@ -30,9 +29,12 @@ class NewsController extends Controller
             }
         };
 
-        $this->view->article = $article;
-        $this->view->authors = Author::findAll();
-        $this->view->display(__DIR__ . '/../../Templates/Admin/edit.php');
+        $this->view->display('edit.php',
+            [
+                'article' => $article,
+                'authors' => Author::findAll(),
+            ]
+        );
     }
 
     protected function actionDelete()

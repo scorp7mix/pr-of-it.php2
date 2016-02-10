@@ -4,7 +4,7 @@ namespace App\Core;
 
 trait ArrayAccess
 {
-    protected $data;
+    protected $data = [];
 
     /**
      * @param mixed $offset

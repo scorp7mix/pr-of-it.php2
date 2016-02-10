@@ -8,8 +8,7 @@ class NewsController extends Controller
 {
     protected function actionIndex()
     {
-        $this->view->lastNews = News::findLastRows(3);
-        $this->view->display(__DIR__ . '/../Templates/index.php');
+        $this->view->display('index.php', ['lastNews' => News::findLastRows(3)]);
     }
 
     protected function actionShow()
@@ -20,7 +19,6 @@ class NewsController extends Controller
             exit(0);
         }
 
-        $this->view->article = News::findByID($id);
-        $this->view->display(__DIR__ . '/../Templates/article.php');
+        $this->view->display('article.php', ['article' => News::findByID($id)]);
     }
 }

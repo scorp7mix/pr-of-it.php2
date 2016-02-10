@@ -10,7 +10,7 @@ namespace App\Core;
  */
 trait Std
 {
-    protected $data;
+    protected $data = [];
 
     public function __get($name)
     {

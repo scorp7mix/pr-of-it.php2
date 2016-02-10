@@ -4,7 +4,7 @@ namespace App\Core;
 
 trait Countable
 {
-    protected $data;
+    protected $data = [];
 
     /**
      * @return int
