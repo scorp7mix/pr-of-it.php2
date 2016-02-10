@@ -25,7 +25,7 @@ class NewsController extends Controller
         if (!empty($_POST)) {
             $article->fillByPost();
             if ($article->save()) {
-                header('Location: /admin.php');
+                header('Location: /admin/news/index');
                 exit(0);
             }
         };
@@ -39,13 +39,13 @@ class NewsController extends Controller
     {
         $id = $_GET['id'] ?? false;
         if (false === $id) {
-            header('Location: /admin.php');
+            header('Location: /admin/news/index');
             exit(0);
         }
 
         $article = News::findByID($id);
         if ($article->delete()) {
-            header('Location: /admin.php');
+            header('Location: /admin/news/index');
         }
     }
 }

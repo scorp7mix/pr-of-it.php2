@@ -48,7 +48,7 @@
                     </form>
                 </div>
             </div>
-            <a class="btn btn-primary" href="/admin.php" role="button">На главную</a>
+            <a class="btn btn-primary" href="/admin/news/index" role="button">На главную</a>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

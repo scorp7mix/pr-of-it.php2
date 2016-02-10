@@ -6,7 +6,15 @@ set_exception_handler(function ($e) {
     echo 'Ошибка: ' . $e->getMessage() . "\n";
 });
 
+define('DS', DIRECTORY_SEPARATOR);
+
 function __autoload($class)
 {
-    require __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
+    $path = __DIR__ . DS . str_replace(['/', '\\'], DS, $class) . '.php';
+
+    if (!file_exists($path)) {
+        return false;
+    }
+
+    require $path;
 }

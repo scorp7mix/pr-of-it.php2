@@ -9,7 +9,7 @@
         <div class="container">
             <h1 class="pull-left">Последние новости (Администратор)</h1>
             <div class="pull-right">
-                <h1><a class="btn btn-primary" href="/admin.php?act=edit">Добавить новость</a></h1>
+                <h1><a class="btn btn-primary" href="/admin/news/edit">Добавить новость</a></h1>
             </div>
             <div class="clearfix"></div>
             <br>
@@ -22,8 +22,8 @@
                                     <h3 class="panel-title">
                                         <?= $n->title ?>
                                         <div class="pull-right">
-                                            <a href="/admin.php?act=edit&id=<?= $n->id ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                            <a href="/admin.php?act=delete&id=<?= $n->id ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                            <a href="/admin/news/edit?id=<?= $n->id ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                            <a href="/admin/news/delete?id=<?= $n->id ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                         </div>
                                     </h3>
                                 </div>

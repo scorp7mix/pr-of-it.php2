@@ -12,7 +12,7 @@
                 <?php foreach($lastNews as $n): ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><b><a href="/index.php?act=show&id=<?= $n->id ?>"><?= $n->title ?></a></b></h3>
+                            <h3 class="panel-title"><b><a href="/show?id=<?= $n->id ?>"><?= $n->title ?></a></b></h3>
                         </div>
                         <div class="panel-body">
                             <?= $n->text ?>
