@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../../autoload.php';
 
-$id = $_GET['id'] ?? false;
+/*$id = $_GET['id'] ?? false;
 if (false === $id) {
     header('Location: /admin/index.php');
     exit(0);
@@ -11,4 +11,7 @@ if (false === $id) {
 $article = \App\Models\News::findByID($id);
 if ($article->delete()) {
     header('Location: /admin/index.php');
-}
+}*/
+
+$controller = new \App\Controllers\AdminController();
+$controller->action('delete');

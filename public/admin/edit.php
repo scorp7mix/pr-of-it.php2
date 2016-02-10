@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../../autoload.php';
 
-$id = $_GET['id'] ?? false;
+/*$id = $_GET['id'] ?? false;
 if (false !== $id) {
     $article = \App\Models\News::findByID($id);
 } else {
@@ -20,4 +20,7 @@ if (!empty($_POST)) {
 $view = new \App\View();
 $view->article = $article;
 $view->authors = \App\Models\Author::findAll();
-$view->display(__DIR__ . '/../../App/Templates/Admin/edit.php');
+$view->display(__DIR__ . '/../../App/Templates/Admin/edit.php');*/
+
+$controller = new \App\Controllers\AdminController();
+$controller->action('edit');
