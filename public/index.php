@@ -2,6 +2,9 @@
 
 require __DIR__ . '/../autoload.php';
 
+// При наличии одного поля в URI оно рассматривается как имя действия
+// Если их больше, то предшествующие поля рассматриваются как
+// имя контроллера
 preg_match('~^/?([\w|/]+)?/(\w+)/?(\?.*)?$~', $_SERVER['REQUEST_URI'], $matches);
 $parsedControllerName = str_replace('/','\\', ucwords($matches[1], '/'));
 $parsedActionName = ucfirst($matches[2]);
