@@ -117,13 +117,13 @@ abstract class Model
         return $result ?: false;
     }
 
-    public function fillByPost()
+    public function fillByPost($post)
     {
         foreach ($this as $k => $v) {
             if ('id' == $k) {
                 continue;
             }
-            $this->$k = $_POST[$k] ?? $this->$k;
+            $this->$k = $post[$k] ?? $this->$k;
         }
     }
 }

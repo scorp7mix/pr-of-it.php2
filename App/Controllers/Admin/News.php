@@ -20,7 +20,7 @@ class News extends Controller
         }
 
         if (!empty($_POST)) {
-            $article->fillByPost();
+            $article->fillByPost($_POST);
             $this->redirectIf('/admin/news/index', $article->save());
         };
 
