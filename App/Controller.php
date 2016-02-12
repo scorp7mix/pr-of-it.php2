@@ -8,7 +8,7 @@ abstract class Controller
     public function __construct()
     {
 
-        $path = str_replace(['App\Controllers\\', 'Controller'], '', get_called_class());
+        $path = str_replace('App\Controllers\\', '', get_called_class());
         $moduleRoot = substr($path, 0, strrpos($path, '\\'));
         $templatePath = str_replace(['/', '\\'], DS, __DIR__ . '/Templates/' . $moduleRoot . '/');
 
@@ -21,6 +21,11 @@ abstract class Controller
 
         $method = 'action' . ucfirst($action);
         return $this->$method();
+    }
+
+    protected function redirect($location)
+    {
+        header("Location: " . $location);
     }
 
     protected function beforeAction() {}
