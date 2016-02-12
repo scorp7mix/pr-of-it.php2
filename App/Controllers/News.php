@@ -13,10 +13,7 @@ class News extends Controller
     protected function actionShow()
     {
         $id = $_GET['id'] ?: false;
-        if (false === $id) {
-            $this->redirect('/index.php');
-            exit(0);
-        }
+        $this->redirectIf('/admin/news/index', false === $id);
 
         $this->view->display('article.php', ['article' => \App\Models\News::findByID($id)]);
     }

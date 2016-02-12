@@ -21,10 +21,7 @@ class News extends Controller
 
         if (!empty($_POST)) {
             $article->fillByPost();
-            if ($article->save()) {
-                $this->redirect('/admin/news/index');
-                exit(0);
-            }
+            $this->redirectIf('/admin/news/index', $article->save());
         };
 
         $this->view->display('edit.php',
@@ -38,14 +35,9 @@ class News extends Controller
     protected function actionDelete()
     {
         $id = $_GET['id'] ?? false;
-        if (false === $id) {
-            $this->redirect('/admin/news/index');
-            exit(0);
-        }
+        $this->redirectIf('/admin/news/index', false === $id);
 
         $article = \App\Models\News::findByID($id);
-        if ($article->delete()) {
-            $this->redirect('/admin/news/index');
-        }
+        $this->redirectIf('/admin/news/index', $article->delete());
     }
 }

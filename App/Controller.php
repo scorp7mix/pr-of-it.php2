@@ -26,6 +26,14 @@ abstract class Controller
     protected function redirect($location)
     {
         header("Location: " . $location);
+        exit(0);
+    }
+
+    protected function redirectIf($location, $condition)
+    {
+        if ($condition) {
+            $this->redirect($location);
+        }
     }
 
     protected function beforeAction() {}
