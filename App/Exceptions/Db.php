@@ -6,6 +6,6 @@ class Db extends \Exception
 {
     public function getErrorMessage()
     {
-        return 'Ошибка базы данных: "' . $this->getMessage() . '"';
+        return $this->getMessage() . ' [Код ошибки: ' . $this->getCode() . ']';
     }
 }

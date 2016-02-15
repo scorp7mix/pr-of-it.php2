@@ -12,7 +12,8 @@ abstract class Controller
         $moduleRoot = substr($path, 0, strrpos($path, '\\'));
         $templatePath = str_replace(['/', '\\'], DS, __DIR__ . '/Templates/' . $moduleRoot . '/');
 
-        $this->view = new View($templatePath);
+        $this->view = new View();
+        $this->view->setTemplatePath($templatePath);
     }
 
     public function action($action)

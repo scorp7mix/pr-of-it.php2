@@ -6,7 +6,7 @@ class View
 {
     protected $templatePath;
 
-    public function __construct($templatePath)
+    public function setTemplatePath($templatePath)
     {
         $this->templatePath = $templatePath;
     }

@@ -17,5 +17,5 @@ try
     $controller = new $controllerName();
     $controller->action($actionName);
 } catch (\App\Exceptions\DB $e) {
-    echo $e->getErrorMessage();
+    (new \App\View())->display('../App/Templates/Errors/Db.php', ['error' => $e]);
 }
