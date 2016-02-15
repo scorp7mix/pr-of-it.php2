@@ -17,7 +17,9 @@ try
     $controller = new $controllerName();
     $controller->action($actionName);
 } catch (\App\Exceptions\DB $e) {
+    \App\Logger::instance()->logException($e);
     (new \App\View())->display('../App/Templates/Errors/Db.php', ['error' => $e]);
 } catch (\App\Exceptions\NotFound $e) {
+    \App\Logger::instance()->logException($e);
     (new \App\View())->display('../App/Templates/Errors/NotFound.php', ['error' => $e]);
 }
