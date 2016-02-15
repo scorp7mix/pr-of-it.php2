@@ -28,13 +28,9 @@ abstract class Model
         $sql = 'INSERT INTO ' . static::TABLE . '(' . implode(',', $columns) . ')
             VALUES (' . implode(',', array_keys($values)) . ')';
         $db = Db::instance();
-        $result = $db->execute($sql, $values);
-        if ($result) {
-            $this->id = $db->getNewId();
-            return $this;
-        }
-
-        throw new \Exception('Ошибка добавления записи в базу (' . $db->getError() . ')');
+        $db->execute($sql, $values);
+        $this->id = $db->getNewId();
+        return $this;
     }
 
     protected function update()
@@ -52,12 +48,8 @@ abstract class Model
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . implode(',', $columns) . '
             WHERE id = ' . (int)$this->id;
         $db = Db::instance();
-        $result = $db->execute($sql, $values);
-        if ($result) {
-            return $this;
-        }
-
-        throw new \Exception('Ошибка обновления записи в базе (' . $db->getError() . ')');
+        $db->execute($sql, $values);
+        return $this;
     }
 
     public function save()
@@ -73,13 +65,9 @@ abstract class Model
 
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = ' . (int)$this->id;
         $db = Db::instance();
-        $result = $db->execute($sql);
-        if ($result) {
-            $this->id = null;
-            return $this;
-        }
-
-        throw new \Exception('Ошибка удаления записи из базы (' . $db->getError() . ')');
+        $db->execute($sql);
+        $this->id = null;
+        return $this;
     }
 
     public static function findAll()

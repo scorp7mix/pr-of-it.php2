@@ -16,15 +16,24 @@ class Db
         $dbc = Config::instance()['db'];
         $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=' . $dbc->dbname .
             ';charset=' . ($dbc->charset ?? 'utf8');
-        $this->dbh = new \PDO($dsn, $dbc->user, $dbc->password);
+
+        try {
+            $this->dbh = new \PDO($dsn, $dbc->user, $dbc->password);
+            $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+            throw new \App\Exceptions\Db('Не удалось подключиться к базе данных');
+        }
     }
 
     public function execute($sql, $data = [])
     {
         $sth = $this->dbh->prepare($sql);
-        $result = $sth->execute($data);
 
-        $this->dbError = $sth->errorInfo()[2];
+        try {
+            $result = $sth->execute($data);
+        } catch (\PDOException $e) {
+            throw new \App\Exceptions\Db('Ошибка при выполнении запроса');
+        }
 
         return $result;
     }
@@ -33,20 +42,17 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
 
-        if(false !== $sth->execute($data)) {
-            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+        try {
+            $sth->execute($data);
+        } catch (\PDOException $e) {
+            throw new \App\Exceptions\Db('Ошибка при выполнении запроса');
         }
 
-        return [];
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
     public function getNewId()
     {
         return $this->dbh->lastInsertId();
-    }
-
-    public function getError()
-    {
-        return $this->dbError;
     }
 }

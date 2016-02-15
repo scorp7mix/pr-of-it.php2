@@ -12,5 +12,10 @@ $parsedActionName = ucfirst($matches[2]);
 $controllerName = '\App\Controllers\\' . ($parsedControllerName ?: 'News');
 $actionName = $parsedActionName ?: 'Index';
 
-$controller = new $controllerName();
-$controller->action($actionName);
+try
+{
+    $controller = new $controllerName();
+    $controller->action($actionName);
+} catch (\App\Exceptions\DB $e) {
+    echo $e->getErrorMessage();
+}
