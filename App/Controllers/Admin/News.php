@@ -2,6 +2,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controller;
+use App\MultiException;
 
 class News extends Controller
 {
@@ -20,7 +21,18 @@ class News extends Controller
         }
 
         if (!empty($_POST)) {
-            $article->fillByPost($_POST);
+            try {
+                $article->fillByPost($_POST);
+            } catch (MultiException $e) {
+                $this->view->display('edit.php',
+                    [
+                        'article' => $article,
+                        'authors' => \App\Models\Author::findAll(),
+                        'errors' => $e
+                    ]
+                );
+                exit(0);
+            }
             $this->redirectIf('/admin/news/index', $article->save());
         };
 

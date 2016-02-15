@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Model;
+use App\MultiException;
 
 /**
  * Class News
@@ -42,5 +43,24 @@ class News extends Model
             return false !== $this->author;
         }
         return false;
+    }
+
+    public function fillByPost($post)
+    {
+        $e = new MultiException();
+        parent::fillByPost($post);
+
+        $this->title = trim($this->title);
+        $this->text = trim($this->text);
+
+        if ('' === $this->title) {
+            $e['title'] = new \Exception('Заголовок некорректен');
+        }
+        if ('' === $this->text) {
+            $e['text'] = new \Exception('Текст некорректен');
+        }
+        if (count($e) > 0) {
+            throw $e;
+        }
     }
 }

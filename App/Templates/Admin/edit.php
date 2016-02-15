@@ -15,12 +15,18 @@
                             <label for="title" class="col-xs-3 control-label">Заголовок</label>
                             <div class="col-xs-9">
                                 <input type="text" class="form-control" id="title" name="title" value="<?= $article->title ?>" required>
+                                <?php if ($errors['title']): ?>
+                                    <div class="alert alert-danger"><?= $errors['title']->getMessage() ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="text" class="col-xs-3 control-label">Текст</label>
                             <div class="col-xs-9">
                                 <textarea class="form-control" id="text" name="text" rows="5" required><?= $article->text ?></textarea>
+                                <?php if ($errors['text']): ?>
+                                    <div class="alert alert-danger"><?= $errors['text']->getMessage() ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="form-group">
