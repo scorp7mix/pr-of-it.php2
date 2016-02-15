@@ -18,4 +18,6 @@ try
     $controller->action($actionName);
 } catch (\App\Exceptions\DB $e) {
     (new \App\View())->display('../App/Templates/Errors/Db.php', ['error' => $e]);
+} catch (\App\Exceptions\NotFound $e) {
+    (new \App\View())->display('../App/Templates/Errors/NotFound.php', ['error' => $e]);
 }

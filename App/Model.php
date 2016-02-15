@@ -90,7 +90,10 @@ abstract class Model
             ['id' => $id]
         );
 
-        return $result[0] ?: false;
+        if (empty($result)) {
+            throw new \App\Exceptions\NotFound((int)$id);
+        }
+        return $result[0];
     }
 
     protected static function findLastRowsByField($field, $limit)
