@@ -14,13 +14,14 @@ class Db
     private function __construct()
     {
         $dbc = Config::instance()['db'];
-        $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=' . $dbc->dbname .
+        $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=5' . $dbc->dbname .
             ';charset=' . ($dbc->charset ?? 'utf8');
 
         try {
             $this->dbh = new \PDO($dsn, $dbc->user, $dbc->password);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
+            \App\Notifier::instance()->notify('Database problems!!!', 'Cannot connect to database!!!');
             throw new \App\Exceptions\Db(null, 1, $e);
         }
     }
