@@ -9,7 +9,7 @@
 <div class="container">
     <h2>Запрашиваемая страница не найдена</h2>
     <div class="alert alert-danger">
-        <?= $error->getErrorMessage() ?>
+        Страница "<?= $page ?>" не существует.
     </div>
 </div>
 

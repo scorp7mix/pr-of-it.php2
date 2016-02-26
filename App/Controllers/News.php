@@ -17,7 +17,7 @@ class News extends Controller
         $this->redirectIf('/admin/news/index', false === $id);
 
         if (false === ($article = \App\Models\News::findByID($id))) {
-            throw new \App\Exceptions\NotFound((int)$id);
+            throw new \App\Exceptions\NotFound($_SERVER['REQUEST_URI']);
         }
 
         $this->view->display('article.php', ['article' => $article]);

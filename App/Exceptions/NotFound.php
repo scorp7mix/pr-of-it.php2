@@ -6,6 +6,6 @@ class NotFound extends \Exception
 {
     public function getErrorMessage()
     {
-        return 'Объект с номером #' . $this->getMessage() . ' не найден';
+        return 'Page ' . $this->getMessage() . ' not found';
     }
 }

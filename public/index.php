@@ -16,9 +16,18 @@ try {
     $controller = new $controllerName();
     $controller->action($actionName);
 } catch (\App\Exceptions\DB $e) {
-    \App\Logger::instance()->logException($e);
-    (new \App\View())->display('../App/Templates/Errors/Db.php', ['error' => $e]);
+    switch ($e->getCode()) {
+        case 1:
+            \App\Logger::instance()->alert(null, ['exception' => $e]);
+            break;
+        case 2:
+            \App\Logger::instance()->error(null, ['exception' => $e]);
+            break;
+        default:
+            \App\Logger::instance()->error(null, ['exception' => $e]);
+    }
+    (new \App\View())->display('../App/Templates/Errors/Db.php', ['error' => $e->getCode()]);
 } catch (\App\Exceptions\NotFound $e) {
-    \App\Logger::instance()->logException($e);
-    (new \App\View())->display('../App/Templates/Errors/NotFound.php', ['error' => $e]);
+    \App\Logger::instance()->info(null, ['exception' => $e]);
+    (new \App\View())->display('../App/Templates/Errors/NotFound.php', ['page' => $e->getMessage()]);
 }

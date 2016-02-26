@@ -21,7 +21,7 @@ class Db
             $this->dbh = new \PDO($dsn, $dbc->user, $dbc->password);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            throw new \App\Exceptions\Db('Не удалось подключиться к базе данных', $e->getCode(), $e);
+            throw new \App\Exceptions\Db(null, 1, $e);
         }
     }
 
@@ -32,7 +32,7 @@ class Db
         try {
             $result = $sth->execute($data);
         } catch (\PDOException $e) {
-            throw new \App\Exceptions\Db('Ошибка при выполнении запроса', $e->getCode(), $e);
+            throw new \App\Exceptions\Db(null, 2, $e);
         }
 
         return $result;
@@ -45,7 +45,7 @@ class Db
         try {
             $sth->execute($data);
         } catch (\PDOException $e) {
-            throw new \App\Exceptions\Db('Ошибка при выполнении запроса', $e->getCode(), $e);
+            throw new \App\Exceptions\Db(null, 2, $e);
         }
 
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
