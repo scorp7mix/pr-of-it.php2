@@ -2,7 +2,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controller;
-use App\MultiException;
+use Scorp7mix\MultiException;
 
 class News extends Controller
 {

@@ -1,8 +1,15 @@
 {
-    "require": {
-        "psr/log": "^1.0",
-        "phpunit/php-timer": "^1.0",
-        "twig/twig": "^1.24",
-        "swiftmailer/swiftmailer": "^5.4"
+  "repositories": [
+    {
+      "url": "https://github.com/scorp7mix/multiexception.git",
+      "type": "git"
     }
+  ],
+  "require": {
+    "psr/log": "^1.0",
+    "phpunit/php-timer": "^1.0",
+    "twig/twig": "^1.24",
+    "swiftmailer/swiftmailer": "^5.4",
+    "scorp7mix/multiexception": "^1.0"
+  }
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1ee31591d15ac44955c823e57bfd5204",
-    "content-hash": "feeb0cd21107a44a3ba5c8b2b05cbdb4",
+    "hash": "c2b5717189495d3dda53716748602c1a",
+    "content-hash": "1155b2d2f7d2b72133d414f7de200d49",
     "packages": [
         {
             "name": "phpunit/php-timer",
@@ -85,6 +85,36 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "scorp7mix/multiexception",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scorp7mix/multiexception.git",
+                "reference": "c52a9697f41349d3063deaef7027ad8f46310619"
+            },
+            "require": {
+                "php": ">5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Scorp7mix\\": "lib/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Maxim Fedorov",
+                    "email": "scorp7mix@gmail.com"
+                }
+            ],
+            "description": "Class for Multiple Exceptions",
+            "keywords": [
+                "exceptions",
+                "multiple"
+            ],
+            "time": "2016-02-26 18:32:48"
         },
         {
             "name": "swiftmailer/swiftmailer",

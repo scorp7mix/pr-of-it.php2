@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Model;
-use App\MultiException;
+use Scorp7mix\MultiException;
 
 /**
  * Class News
