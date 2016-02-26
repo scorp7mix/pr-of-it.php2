@@ -8,8 +8,9 @@ set_exception_handler(function ($e) {
 
 define('DS', DIRECTORY_SEPARATOR);
 
-function __autoload($class)
-{
+require str_replace(['/', '\\'], DS, __DIR__ . '/vendor/autoload.php');
+
+spl_autoload_register(function ($class) {
     $path = __DIR__ . DS . str_replace(['/', '\\'], DS, $class) . '.php';
 
     if (!file_exists($path)) {
@@ -17,4 +18,4 @@ function __autoload($class)
     }
 
     require $path;
-}
+});
