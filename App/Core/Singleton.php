@@ -18,9 +18,9 @@ trait Singleton
 
     public static function instance()
     {
-        if (empty(self::$instance)) {
-            self::$instance = new self;
+        if (empty(static::$instance)) {
+            static::$instance = new static;
         }
-        return self::$instance;
+        return static::$instance;
     }
 }

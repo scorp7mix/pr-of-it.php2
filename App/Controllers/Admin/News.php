@@ -15,7 +15,9 @@ class News extends Controller
     {
         $id = $_GET['id'] ?? false;
         if (false !== $id) {
-            $article = \App\Models\News::findByID($id);
+            if (false === ($article = \App\Models\News::findByID($id))) {
+                throw new \App\Exceptions\NotFound((int)$id);
+            }
         } else {
             $article = new \App\Models\News();
         }
