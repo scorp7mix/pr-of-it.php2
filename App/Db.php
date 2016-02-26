@@ -14,7 +14,7 @@ class Db
     private function __construct()
     {
         $dbc = Config::instance()['db'];
-        $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=5' . $dbc->dbname .
+        $dsn = $dbc->driver . ':host=' . $dbc->host . ';dbname=' . $dbc->dbname .
             ';charset=' . ($dbc->charset ?? 'utf8');
 
         try {
