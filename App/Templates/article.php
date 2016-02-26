@@ -1,9 +1,0 @@
-<?php $title = 'Article' ?>
-<h1><?= $article->title ?></h1>
-<p class="text-info small">от: <?= $article->date ?>, автор: <?= $article->author->name ?? 'Неизвестный автор' ?></p>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <?= $article->text ?>
-    </div>
-</div>
-<a class="btn btn-primary" href="/" role="button">На главную</a>

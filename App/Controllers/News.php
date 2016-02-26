@@ -6,9 +6,14 @@ use App\Controller;
 
 class News extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     protected function actionIndex()
     {
-        $this->view->display('index.php', ['lastNews' => \App\Models\News::findLastRows(3)]);
+        $this->view->twigDisplay('index.html.twig', ['lastNews' => \App\Models\News::findLastRows(3)]);
     }
 
     protected function actionShow()
@@ -20,6 +25,6 @@ class News extends Controller
             throw new \App\Exceptions\NotFound($_SERVER['REQUEST_URI']);
         }
 
-        $this->view->display('article.php', ['article' => $article]);
+        $this->view->twigDisplay('article.html.twig', ['article' => $article]);
     }
 }

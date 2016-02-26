@@ -1,0 +1,28 @@
+{% extends './Layouts/main.html.twig' %}
+{% set title = 'Index' %}
+
+{% block content %}
+    <h1>Последние новости</h1>
+    {% if lastNews %}
+        {% for article in lastNews %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b><a href="/show?id={{ article.id }}">{{ article.title }}</a></b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {{ article.text }}
+                </div>
+                <div class="panel-footer">
+                    <i>
+                        {{ article.author.name ?? 'Неизвестный автор' }}
+                        <small>({{ article.date }})</small>
+                    </i>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">Новостей не найдено</div>
+    {% endif %}
+{% endblock %}
