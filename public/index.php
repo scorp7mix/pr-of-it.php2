@@ -13,6 +13,7 @@ $controllerName = '\App\Controllers\\' . ($parsedControllerName ?: 'News');
 $actionName = $parsedActionName ?: 'Index';
 
 try {
+    PHP_Timer::start();
     $controller = new $controllerName();
     $controller->action($actionName);
 } catch (\App\Exceptions\DB $e) {
