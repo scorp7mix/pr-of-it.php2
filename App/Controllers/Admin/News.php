@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers\Admin;
 
+use App\Components\AdminDataTable;
 use App\Controller;
 use Scorp7mix\MultiException;
 
@@ -8,7 +9,24 @@ class News extends Controller
 {
     protected function actionIndex()
     {
-        $this->view->display('index.php', ['lastNews' => \App\Models\News::findAll()]);
+        $lastNews = \App\Models\News::findAll();
+        $dataTable = new AdminDataTable(
+            $lastNews,
+            function ($m) {
+                return $m->id;
+            },
+            function ($m) {
+                return $m->date;
+            },
+            function ($m) {
+                return $m->title;
+            },
+            function ($m) {
+                return $m->author->name;
+            }
+        );
+
+        $this->view->display('indexTable.php', ['data' => $dataTable->render()]);
     }
 
     protected function actionEdit()
