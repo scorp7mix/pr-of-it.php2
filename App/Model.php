@@ -97,12 +97,10 @@ abstract class Model
     {
         $db = Db::instance();
 
-        $result = $db->query(
+        return $db->queryEach(
             'SELECT * FROM ' . static::TABLE . ' ORDER BY ' . $field . ' DESC LIMIT ' . $limit,
             static::class
         );
-
-        return $result ?: false;
     }
 
     public function fillByPost($post)

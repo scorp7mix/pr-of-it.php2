@@ -52,6 +52,25 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    public function queryEach($sql, $class, $data = [])
+    {
+        $sth = $this->dbh->prepare($sql);
+
+        try {
+            $sth->execute($data);
+        } catch (\PDOException $e) {
+            throw new \App\Exceptions\Db(null, 2, $e);
+        }
+
+        $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+
+        while( $row = $sth->fetch()) {
+            yield $row;
+        };
+
+        yield false;
+    }
+
     public function getNewId()
     {
         return $this->dbh->lastInsertId();
